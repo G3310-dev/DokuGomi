@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "368048525428",
+    "project_id": "dokugomi",
+    "storage_bucket": "dokugomi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:368048525428:android:cb28d781d56128fe270121",
+        "android_client_info": {
+          "package_name": "com.gdev.dokugomi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "368048525428-508l724o1lsbf4pi06b4t6p0o2ug6cdk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmnljvVMoYWHMKzBpvcaYhygu-G5wUx_Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "368048525428-508l724o1lsbf4pi06b4t6p0o2ug6cdk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
