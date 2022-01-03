@@ -1,12 +1,37 @@
+import 'dart:async';
+
+import 'package:connectivity/connectivity.dart';
 import 'package:dokugomi/Service/authentication_service.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
-class SignIn extends StatelessWidget {
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+class SignIn extends StatefulWidget {
+  @override
+  State<SignIn> createState() => _SignInState();
+}
 
+class _SignInState extends State<SignIn> {
+  final TextEditingController emailController = TextEditingController();
+
+  final TextEditingController passwordController = TextEditingController();
+  void initState() {
+    super.initState();
+    Timer.periodic(Duration(seconds: 5), (timer) {
+      connect();
+    });    connect();
+  }
+
+  Future<void> connect()async {
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.mobile) {
+      print("I am connected to a mobile network.");
+    } else if (connectivityResult == ConnectivityResult.wifi) {
+      print("I am connected to a wifi network.");
+    }else{
+      Fluttertoast.showToast(msg: "Not Connected to internet" );
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

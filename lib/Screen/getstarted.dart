@@ -1,8 +1,10 @@
 import 'dart:async';
 
+import 'package:connectivity/connectivity.dart';
 import 'package:dokugomi/Screen/sign_in_page.dart';
 import 'package:dokugomi/Screen/sign_up_page.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class GetStarted extends StatefulWidget {
   const GetStarted({Key? key}) : super(key: key);
@@ -25,8 +27,20 @@ class _GetStartedState extends State<GetStarted> {
         }),
       },
     );
+    Timer.periodic(Duration(seconds: 5), (timer) {
+      connect();
+    });    connect();
   }
-
+  Future<void> connect()async {
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.mobile) {
+      print("I am connected to a mobile network.");
+    } else if (connectivityResult == ConnectivityResult.wifi) {
+      print("I am connected to a wifi network.");
+    }else{
+      Fluttertoast.showToast(msg: "Not Connected to internet" );
+    }
+  }
   @override
   Widget build(BuildContext context) {
 

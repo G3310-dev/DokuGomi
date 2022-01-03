@@ -1,13 +1,40 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:connectivity/connectivity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-class Draw extends StatelessWidget {
+class Draw extends StatefulWidget {
+  @override
+  State<Draw> createState() => _DrawState();
+}
+
+class _DrawState extends State<Draw> {
   final TextEditingController emailController = TextEditingController();
+
   final TextEditingController passwordController = TextEditingController();
+
   User user = FirebaseAuth.instance.currentUser;
+  void initState() {
+    super.initState();
+    Timer.periodic(Duration(seconds: 5), (timer) {
+      connect();
+    });    connect();
+  }
+
+  Future<void> connect()async {
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.mobile) {
+      print("I am connected to a mobile network.");
+    } else if (connectivityResult == ConnectivityResult.wifi) {
+      print("I am connected to a wifi network.");
+    }else{
+      Fluttertoast.showToast(msg: "Not Connected to internet" );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:connectivity/connectivity.dart';
 import 'package:dokugomi/Screen/Sell/lube.dart';
 import 'package:dokugomi/Screen/Sell/oil.dart';
 import 'package:dokugomi/Screen/Sell/paper.dart';
@@ -12,6 +13,7 @@ import 'package:dokugomi/Screen/history.dart';
 import 'package:dokugomi/Screen/news.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 
 import 'Sell/cardboard.dart';
@@ -26,17 +28,33 @@ class _HomeState extends State<Home> {
   int balance = 120;
   bool _looks = false;
   late Timer _timer;
+  Future<void> connect()async {
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.mobile) {
+      Fluttertoast.cancel();
+    } else if (connectivityResult == ConnectivityResult.wifi) {
+      Fluttertoast.cancel();
+    }else{
+      Fluttertoast.showToast(msg: "Not Connected to internet");
+    }
+  }
+
   void initState() {
     super.initState();
     _timer = Timer(
-      Duration(milliseconds: 300),
+      Duration(milliseconds: 5),
           () => {
         setState(() {
           _looks = true;
         }),
       },
     );
+    Timer.periodic(Duration(seconds: 120), (timer) {
+      connect();
+    });    connect();
   }
+
+
   GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
 
   @override
