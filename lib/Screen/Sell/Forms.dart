@@ -15,6 +15,12 @@ class Forms extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          leading: GestureDetector(onTap:(){Navigator.pop(context);},child: Icon(Icons.arrow_back_ios)),
+          toolbarHeight: 45,
+          backgroundColor: Colors.transparent,
+        ),
+        extendBodyBehindAppBar: true,
         backgroundColor: Colors.white,
         body: Stack(
           children: <Widget>[
@@ -129,9 +135,20 @@ class Forms extends StatelessWidget {
                           final TransactionHandler transactionHandler = (Transaction tran) => tran.get(docRef).then((DocumentSnapshot snap) {
                             if (snap.exists) {
                               tran.update(docRef, <String, dynamic>{'amount': snap.data()['amount'] + value});
+                            }else{
+                              docRef.setData({"amount": FieldValue.increment(value)});
                             }
                           });
                           Firestore.instance.runTransaction(transactionHandler);
+                          final DocumentReference docRef2 = Firestore.instance.collection("Stock").doc(name);
+                          final TransactionHandler transactionHandler2 = (Transaction tran) => tran.get(docRef2).then((DocumentSnapshot snap) {
+                            if (snap.exists) {
+                              tran.update(docRef2, <String, dynamic>{'amount': snap.data()['amount'] + value});
+                            }else{
+                              docRef2.setData({"amount": FieldValue.increment(value)});
+                            }
+                          });
+                          Firestore.instance.runTransaction(transactionHandler2);
                           emailController.clear();
                           passwordController.clear();
                           Navigator.pop(context);

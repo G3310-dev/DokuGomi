@@ -1,6 +1,5 @@
 import 'package:dokugomi/Screen/getstarted.dart';
 import 'package:dokugomi/Screen/home.dart';
-import 'package:dokugomi/Screen/tes2.dart';
 import 'package:dokugomi/Service/authentication_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';

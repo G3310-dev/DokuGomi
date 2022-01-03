@@ -9,6 +9,13 @@ class Box extends StatelessWidget {
   Widget build(BuildContext context) {
     var name = "Cardboard";
     return Scaffold(
+      appBar: AppBar(
+        leading: GestureDetector(onTap:(){Navigator.pop(context);},child: Icon(Icons.arrow_back_ios)),
+        toolbarHeight: 45,
+        backgroundColor: Colors.transparent,
+
+      ),
+      extendBodyBehindAppBar: true,
       body: Stack(
         children: <Widget>[
           Container(
