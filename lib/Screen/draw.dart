@@ -12,6 +12,12 @@ class Draw extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          leading: GestureDetector(onTap:(){Navigator.pop(context);},child: Icon(Icons.arrow_back_ios)),
+          toolbarHeight: 45,
+          backgroundColor: Colors.transparent,
+        ),
+        extendBodyBehindAppBar: true,
         backgroundColor: Colors.white,
         body: Stack(
           children: <Widget>[

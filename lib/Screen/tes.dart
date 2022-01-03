@@ -71,9 +71,15 @@ class Add extends StatelessWidget {
               GestureDetector(
                 onTap: () {
                   Map <String,dynamic> data= {'postDate':  Timestamp.now(),'password': emailController.text,'text': passwordController.text, 'name': '${user.email}'};
-                  FirebaseFirestore.instance.collection("Balance").doc("${user.email}").collection("Balance").doc("${user.email}").set(data);
-                  emailController.clear();
-                  passwordController.clear();
+                  final DocumentReference docRef = Firestore.instance.collection("Balance").doc("${user.email}").collection("Balance").doc("${user.email}");
+                  final TransactionHandler transactionHandler = (Transaction tran) => tran.get(docRef).then((DocumentSnapshot snap) {
+                    if (snap.exists) {
+                      tran.update(docRef, <String, dynamic>{'amount': snap.data()['amount'] + 1});
+                    }else{
+                      docRef.setData({"amount": FieldValue.increment(1)});
+                    }
+                  });
+                  Firestore.instance.runTransaction(transactionHandler);
                 },
                 child: Container(
                   margin: EdgeInsets.only(top: 60),
@@ -97,7 +103,7 @@ class Add extends StatelessWidget {
               GestureDetector(
                 onTap: () {
                   Map <String,dynamic> data= {'postDate':  Timestamp.now(),'password': emailController.text,'text': passwordController.text, 'name': '${user.email}'};
-                  FirebaseFirestore.instance.collection("Balance").doc("${user.email}").set(data);
+                  FirebaseFirestore.instance.collection("Balance").doc("${user.email}").collection("Balance").doc("${user.email}").set(data);
                   emailController.clear();
                   passwordController.clear();
                 },

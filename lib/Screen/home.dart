@@ -9,6 +9,7 @@ import 'package:dokugomi/Screen/about.dart';
 import 'package:dokugomi/Screen/account.dart';
 import 'package:dokugomi/Screen/draw.dart';
 import 'package:dokugomi/Screen/history.dart';
+import 'package:dokugomi/Screen/news.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -78,15 +79,21 @@ class _HomeState extends State<Home> {
                   },
                 ),
                 ListTile(
-                  leading: Image.asset("images/info.png", width: MediaQuery.of(context).size.width*0.1,),
+                  leading: Image.asset("images/news.png", width: MediaQuery.of(context).size.width*0.1,),
 
-                  title: const Text('About',style: TextStyle(fontWeight: FontWeight.bold), textAlign: TextAlign.left,),
+                  title: const Text('News',style: TextStyle(fontWeight: FontWeight.bold), textAlign: TextAlign.left,),
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => About()),
+                      MaterialPageRoute(builder: (context) => News()),
                     );
                   },
+                ),
+                ListTile(
+                  leading: Image.asset("images/info.png", width: MediaQuery.of(context).size.width*0.1,),
+
+                  title: const Text('About',style: TextStyle(fontWeight: FontWeight.bold), textAlign: TextAlign.left,),
+                  onTap: () {},
                 ),
               ],
 

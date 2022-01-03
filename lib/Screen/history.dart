@@ -13,6 +13,12 @@ class History extends StatelessWidget {
     final CollectionReference collectionReference = FirebaseFirestore.instance.collection("Sell").doc(user.email).collection("Sell");
 
     return Scaffold(
+      appBar: AppBar(
+        leading: GestureDetector(onTap:(){Navigator.pop(context);},child: Icon(Icons.arrow_back_ios)),
+        toolbarHeight: 45,
+        backgroundColor: Colors.transparent,
+      ),
+      extendBodyBehindAppBar: true,
       body: Stack(
         children: [
           Container(
@@ -24,7 +30,6 @@ class History extends StatelessWidget {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(top: 10),
             child: SafeArea(
               child: Column(
                 children: <Widget>[
