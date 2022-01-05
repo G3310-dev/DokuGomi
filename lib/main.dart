@@ -25,7 +25,8 @@ class MyApp extends StatelessWidget {
         )
       ],
       child: MaterialApp(
-          title: 'DokuGomi',
+        debugShowCheckedModeBanner: false,
+        title: 'DokuGomi',
           theme: ThemeData(
             primarySwatch: Colors.green,
             visualDensity: VisualDensity.adaptivePlatformDensity,

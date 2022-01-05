@@ -33,8 +33,7 @@ class _SignUpState extends State<SignUp> {
     } else if (connectivityResult == ConnectivityResult.wifi) {
       print("I am connected to a wifi network.");
     }else{
-      Fluttertoast.showToast(msg: "Not Connected to internet" );
-    }
+      print("No Internet");    }
   }
 
   @override

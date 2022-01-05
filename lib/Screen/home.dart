@@ -35,7 +35,7 @@ class _HomeState extends State<Home> {
     } else if (connectivityResult == ConnectivityResult.wifi) {
       Fluttertoast.cancel();
     }else{
-      Fluttertoast.showToast(msg: "Not Connected to internet");
+      print("No Internet");
     }
   }
 
@@ -137,7 +137,7 @@ class _HomeState extends State<Home> {
           ),
           AnimatedOpacity(
             opacity: _looks ? 1.0:0.0,
-            duration: const Duration(milliseconds: 2000),
+            duration: const Duration(milliseconds: 4500),
             child: SafeArea(
               child: Center(
                 child: Column(
@@ -202,8 +202,7 @@ class _HomeState extends State<Home> {
                                 alignment: Alignment.centerLeft,
                                 width: MediaQuery.of(context).size.width*0.5,
                                 height: MediaQuery.of(context).size.height*0.04,
-                                child: Expanded(
-                                  child: Container(
+                                child: Container(
                                     alignment: Alignment.centerLeft,
                                     child: StreamBuilder(stream: collectionReference.snapshots(),
                                         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -248,7 +247,6 @@ class _HomeState extends State<Home> {
                                         }
                                     ),
                                   ),
-                                ),
                               ),
                               Container(
                                 margin: EdgeInsets.only(right: 20),

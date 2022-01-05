@@ -59,7 +59,7 @@ class About extends StatelessWidget {
                 Container(
                   width: MediaQuery.of(context).size.width*0.7,
                   child: Text(
-                      "\" Turn Your Trash Into Money \"\n\nV 0.1 Debug\n\nBy: Glenn",
+                      "\" Turn Your Trash Into Money \"\n\nV 0.1 Release\n\nBy: Glenn",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           fontWeight: FontWeight.normal,
